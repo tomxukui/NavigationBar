@@ -3,6 +3,7 @@
 
     <declare-styleable name="NavigationBar">
         <attr name="android:elevation" />
+        <attr name="nb_icon_size" format="dimension" />
     </declare-styleable>
 
 </resources>

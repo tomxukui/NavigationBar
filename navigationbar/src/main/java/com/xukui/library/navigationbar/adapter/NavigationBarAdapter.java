@@ -17,6 +17,15 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
 
     private LayoutInflater mInflater;
 
+    private int mIconSize;
+
+    public NavigationBarAdapter(int iconSize) {
+        mIconSize = iconSize;
+    }
+
+    public NavigationBarAdapter() {
+    }
+
     @Override
     public int getItemCount() {
         return mTabIcons == null ? 0 : mTabIcons.size();
@@ -38,12 +47,20 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
         int tabIcon = mTabIcons.get(position);
 
         tabHolder.iv_tab.setImageResource(tabIcon);
+        ViewGroup.LayoutParams iconLayoutParams = tabHolder.iv_tab.getLayoutParams();
+        iconLayoutParams.width = mIconSize;
     }
 
     public void setNewData(List<Integer> icons) {
         mTabIcons = icons;
 
         notifyDataSetChanged();
+    }
+
+    public void setIconSize(int iconSize) {
+        mIconSize = iconSize;
+
+        notifyItemRangeChanged(0, getItemCount());
     }
 
     static class TabHolder extends RecyclerView.ViewHolder {

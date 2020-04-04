@@ -19,7 +19,8 @@
             android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:nb_icon_size="30dp" />
 
     </android.support.constraint.ConstraintLayout>
 

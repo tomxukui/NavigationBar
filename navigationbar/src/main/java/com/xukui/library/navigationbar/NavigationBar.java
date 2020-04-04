@@ -23,8 +23,9 @@ public class NavigationBar extends FrameLayout {
     private GridLayoutManager mLayoutManager;
     private NavigationBarAdapter mNavigationBarAdapter;
 
-    private int mElevation;
     private int mSpanCount;
+    private int mElevation;
+    private int mIconSize;
 
     public NavigationBar(@NonNull Context context) {
         super(context);
@@ -48,19 +49,21 @@ public class NavigationBar extends FrameLayout {
     }
 
     private void initData(Context context, AttributeSet attrs, int defStyleAttr) {
-        mElevation = DensityUtil.dp2px(6);
         mSpanCount = 4;
+        mElevation = DensityUtil.dp2px(6);
+        mIconSize = DensityUtil.dp2px(30);
 
         if (attrs != null) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.NavigationBar, defStyleAttr, 0);
 
             mElevation = ta.getDimensionPixelOffset(R.styleable.NavigationBar_android_elevation, mElevation);
+            mIconSize = ta.getDimensionPixelOffset(R.styleable.NavigationBar_nb_icon_size, mIconSize);
 
             ta.recycle();
         }
 
         mLayoutManager = new GridLayoutManager(context, mSpanCount);
-        mNavigationBarAdapter = new NavigationBarAdapter();
+        mNavigationBarAdapter = new NavigationBarAdapter(mIconSize);
     }
 
     private void initView(Context context) {
