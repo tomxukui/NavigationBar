@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.xukui.library.navigationbar.adapter.NavigationBarAdapter;
+import com.xukui.library.navigationbar.bean.TabItem;
 import com.xukui.library.navigationbar.util.DensityUtil;
 
 import java.util.List;
@@ -81,13 +82,13 @@ public class NavigationBar extends FrameLayout {
         recycler_tabs.setAdapter(mNavigationBarAdapter);
     }
 
-    public void setNewIcons(List<Integer> icons) {
-        if (icons != null && icons.size() > 0) {
-            mSpanCount = icons.size();
+    public void setTabItems(List<TabItem> tabItems) {
+        if (tabItems != null && tabItems.size() > 0) {
+            mSpanCount = tabItems.size();
         }
 
         mLayoutManager.setSpanCount(mSpanCount);
-        mNavigationBarAdapter.setNewData(icons);
+        mNavigationBarAdapter.setNewData(tabItems);
     }
 
     public void setOnTabSelectedListener(@Nullable NavigationBarAdapter.OnTabSelectedListener listener) {

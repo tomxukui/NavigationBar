@@ -11,12 +11,13 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.xukui.library.navigationbar.R;
+import com.xukui.library.navigationbar.bean.TabItem;
 
 import java.util.List;
 
 public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdapter.TabHolder> {
 
-    private List<Integer> mTabIcons;
+    private List<TabItem> mTabItems;
 
     private LayoutInflater mInflater;
 
@@ -35,7 +36,7 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
 
     @Override
     public int getItemCount() {
-        return mTabIcons == null ? 0 : mTabIcons.size();
+        return mTabItems == null ? 0 : mTabItems.size();
     }
 
     @NonNull
@@ -51,32 +52,39 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
 
     @Override
     public void onBindViewHolder(@NonNull final TabHolder tabHolder, final int position) {
-        int tabIcon = mTabIcons.get(position);
+        final TabItem tabItem = mTabItems.get(position);
         boolean isSelected = (mSelectedPosition == position);
 
         tabHolder.frame_tab.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                int prePosition = mSelectedPosition;
-                mSelectedPosition = position;
+                if (tabItem.isSelectEnabled()) {
+                    int prePosition = mSelectedPosition;
+                    mSelectedPosition = position;
 
-                notifyItemChanged(prePosition);
-                notifyItemChanged(position);
+                    notifyItemChanged(prePosition);
+                    notifyItemChanged(position);
 
-                if (mOnTabSelectedListener != null) {
-                    if (prePosition == mSelectedPosition) {
-                        mOnTabSelectedListener.onTabReselected(tabHolder, position);
+                    if (mOnTabSelectedListener != null) {
+                        if (prePosition == mSelectedPosition) {
+                            mOnTabSelectedListener.onTabReselected(tabHolder, position);
 
-                    } else {
-                        mOnTabSelectedListener.onTabSelected(tabHolder, position, prePosition);
+                        } else {
+                            mOnTabSelectedListener.onTabSelected(tabHolder, position, prePosition);
+                        }
+                    }
+
+                } else {
+                    if (mOnTabSelectedListener != null) {
+                        mOnTabSelectedListener.onTabClicked(tabHolder, position);
                     }
                 }
             }
 
         });
 
-        tabHolder.iv_tab.setImageResource(tabIcon);
+        tabHolder.iv_tab.setImageResource(tabItem.getIcon());
         ViewGroup.LayoutParams iconLayoutParams = tabHolder.iv_tab.getLayoutParams();
         iconLayoutParams.width = mIconSize;
 
@@ -89,8 +97,8 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
         }
     }
 
-    public void setNewData(List<Integer> icons) {
-        mTabIcons = icons;
+    public void setNewData(List<TabItem> tabItems) {
+        mTabItems = tabItems;
 
         notifyDataSetChanged();
     }
@@ -119,6 +127,8 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
     }
 
     public interface OnTabSelectedListener {
+
+        void onTabClicked(TabHolder holder, int position);
 
         void onTabSelected(TabHolder holder, int position, int prePosition);
 

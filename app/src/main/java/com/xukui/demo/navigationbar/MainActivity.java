@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.xukui.library.navigationbar.NavigationBar;
 import com.xukui.library.navigationbar.adapter.NavigationBarAdapter;
+import com.xukui.library.navigationbar.bean.TabItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private NavigationBar bar_tabs;
 
-    private List<Integer> mTabIcons;
+    private List<TabItem> mTabItems;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        mTabIcons = new ArrayList<>();
-        mTabIcons.add(R.drawable.btn_explore);
-        mTabIcons.add(R.drawable.btn_explore);
-        mTabIcons.add(R.drawable.btn_explore);
-        mTabIcons.add(R.drawable.btn_explore);
-        mTabIcons.add(R.drawable.btn_explore);
+        mTabItems = new ArrayList<>();
+        mTabItems.add(new TabItem(R.drawable.btn_explore, true));
+        mTabItems.add(new TabItem(R.drawable.btn_explore, true));
+        mTabItems.add(new TabItem(R.drawable.btn_explore, false));
+        mTabItems.add(new TabItem(R.drawable.btn_explore, true));
+        mTabItems.add(new TabItem(R.drawable.btn_explore, true));
     }
 
     private void initView() {
@@ -42,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setView() {
         bar_tabs.setOnTabSelectedListener(new NavigationBarAdapter.OnTabSelectedListener() {
+
+            @Override
+            public void onTabClicked(NavigationBarAdapter.TabHolder holder, int position) {
+                Log.e("ddd", "onTabClicked: " + position);
+            }
 
             @Override
             public void onTabSelected(NavigationBarAdapter.TabHolder holder, int position, int prePosition) {
@@ -54,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-        bar_tabs.setNewIcons(mTabIcons);
+        bar_tabs.setTabItems(mTabItems);
     }
 
 }
