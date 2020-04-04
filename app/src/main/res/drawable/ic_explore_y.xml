@@ -1,0 +1,38 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!--    移动画布到中间-->
+    <group
+        android:translateX="60"
+        android:translateY="60">
+
+        <!--    圆环-->
+        <path
+            android:name="path_ring"
+            android:pathData="@string/svg_path_explore_ring"
+            android:strokeWidth="10"
+            android:strokeColor="@color/main_nav_n" />
+
+        <!--    圆圈-->
+        <path
+            android:name="path_circle"
+            android:fillColor="@color/main_nav_n"
+            android:pathData="@string/svg_path_explore_circle" />
+
+        <!--    指针-->
+        <group android:name="group_pointer">
+
+            <path
+                android:name="path_pointer"
+                android:pathData="@string/svg_path_explore_pointer"
+                android:strokeWidth="10"
+                android:strokeColor="@color/main_nav_y" />
+
+        </group>
+
+    </group>
+
+</vector>

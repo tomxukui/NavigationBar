@@ -1,0 +1,47 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/aapt"
+    android:drawable="@drawable/ic_explore_y">
+
+    <!--  圆圈-->
+    <target android:name="path_circle">
+        <app:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:duration="300"
+                    android:interpolator="@android:interpolator/fast_out_slow_in"
+                    android:propertyName="fillAlpha"
+                    android:valueFrom="1"
+                    android:valueTo="0" />
+            </set>
+        </app:attr>
+    </target>
+
+    <!--  指针-->
+    <target android:name="group_pointer">
+        <app:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:duration="300"
+                    android:interpolator="@android:interpolator/fast_out_slow_in"
+                    android:propertyName="rotation"
+                    android:valueFrom="180"
+                    android:valueTo="0" />
+            </set>
+        </app:attr>
+    </target>
+
+    <target android:name="path_pointer">
+        <app:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:duration="300"
+                    android:interpolator="@android:interpolator/fast_out_slow_in"
+                    android:propertyName="strokeColor"
+                    android:valueFrom="@color/main_nav_y"
+                    android:valueTo="@color/main_nav_n"
+                    android:valueType="colorType" />
+            </set>
+        </app:attr>
+    </target>
+
+</animated-vector>

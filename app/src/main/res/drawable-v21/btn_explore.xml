@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/checked"
+        android:drawable="@drawable/ic_explore_y"
+        android:state_checked="true" />
+
+    <item
+        android:id="@+id/unchecked"
+        android:drawable="@drawable/ic_explore_n" />
+
+    <transition
+        android:drawable="@drawable/btn_explore_n_to_y"
+        android:fromId="@id/unchecked"
+        android:toId="@id/checked" />
+
+    <transition
+        android:drawable="@drawable/btn_explore_y_to_n"
+        android:fromId="@id/checked"
+        android:toId="@id/unchecked" />
+
+</animated-selector>
