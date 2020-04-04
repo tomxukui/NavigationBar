@@ -5,10 +5,9 @@ import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -21,9 +20,11 @@ public class NavigationBar extends FrameLayout {
 
     private RecyclerView recycler_tabs;
 
+    private GridLayoutManager mLayoutManager;
     private NavigationBarAdapter mNavigationBarAdapter;
 
     private int mElevation;
+    private int mSpanCount;
 
     public NavigationBar(@NonNull Context context) {
         super(context);
@@ -48,6 +49,7 @@ public class NavigationBar extends FrameLayout {
 
     private void initData(Context context, AttributeSet attrs, int defStyleAttr) {
         mElevation = DensityUtil.dp2px(6);
+        mSpanCount = 4;
 
         if (attrs != null) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.NavigationBar, defStyleAttr, 0);
@@ -57,6 +59,7 @@ public class NavigationBar extends FrameLayout {
             ta.recycle();
         }
 
+        mLayoutManager = new GridLayoutManager(context, mSpanCount);
         mNavigationBarAdapter = new NavigationBarAdapter();
     }
 
@@ -69,12 +72,16 @@ public class NavigationBar extends FrameLayout {
     private void setView(Context context) {
         ViewCompat.setElevation(this, mElevation);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        recycler_tabs.setLayoutManager(layoutManager);
+        recycler_tabs.setLayoutManager(mLayoutManager);
         recycler_tabs.setAdapter(mNavigationBarAdapter);
     }
 
     public void setNewIcons(List<Integer> icons) {
+        if (icons != null && icons.size() > 0) {
+            mSpanCount = icons.size();
+        }
+
+        mLayoutManager.setSpanCount(mSpanCount);
         mNavigationBarAdapter.setNewData(icons);
     }
 

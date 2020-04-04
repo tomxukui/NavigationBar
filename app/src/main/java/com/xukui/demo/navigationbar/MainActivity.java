@@ -29,9 +29,11 @@ public class MainActivity  extends AppCompatActivity {
         mTabIcons = new ArrayList<>();
         mTabIcons.add(R.mipmap.ic_launcher_round);
         mTabIcons.add(R.mipmap.ic_launcher_round);
-        mTabIcons.add(R.mipmap.ic_launcher_round);
-        mTabIcons.add(R.mipmap.ic_launcher_round);
-        mTabIcons.add(R.mipmap.ic_launcher_round);
+//        mTabIcons.add(R.mipmap.ic_launcher_round);
+//        mTabIcons.add(R.mipmap.ic_launcher_round);
+//        mTabIcons.add(R.mipmap.ic_launcher_round);
+//        mTabIcons.add(R.mipmap.ic_launcher_round);
+//        mTabIcons.add(R.mipmap.ic_launcher_round);
     }
 
     private void initView() {
