@@ -1,9 +1,11 @@
 package com.xukui.demo.navigationbar;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.xukui.library.navigationbar.NavigationBar;
 import com.xukui.library.navigationbar.adapter.NavigationBarAdapter;
@@ -30,12 +32,10 @@ public class MainActivity extends AppCompatActivity {
     private void initData() {
         mTabIcons = new ArrayList<>();
         mTabIcons.add(R.drawable.btn_explore);
-        mTabIcons.add(R.drawable.test);
         mTabIcons.add(R.drawable.btn_explore);
-        mTabIcons.add(R.mipmap.ic_launcher_round);
-        mTabIcons.add(R.mipmap.ic_launcher_round);
         mTabIcons.add(R.drawable.btn_explore);
-        mTabIcons.add(R.mipmap.ic_launcher_round);
+        mTabIcons.add(R.drawable.btn_explore);
+        mTabIcons.add(R.drawable.btn_explore);
     }
 
     private void initView() {

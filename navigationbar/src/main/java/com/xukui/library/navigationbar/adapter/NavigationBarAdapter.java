@@ -1,5 +1,6 @@
 package com.xukui.library.navigationbar.adapter;
 
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
@@ -51,6 +52,7 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
     @Override
     public void onBindViewHolder(@NonNull final TabHolder tabHolder, final int position) {
         int tabIcon = mTabIcons.get(position);
+        boolean isSelected = (mSelectedPosition == position);
 
         tabHolder.frame_tab.setOnClickListener(new View.OnClickListener() {
 
@@ -78,8 +80,13 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
         ViewGroup.LayoutParams iconLayoutParams = tabHolder.iv_tab.getLayoutParams();
         iconLayoutParams.width = mIconSize;
 
-        int[] stateSet = {android.R.attr.state_checked * (mSelectedPosition == position ? 1 : -1)};
-        tabHolder.iv_tab.setImageState(stateSet, true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            int[] stateSet = {android.R.attr.state_checked * (isSelected ? 1 : -1)};
+            tabHolder.iv_tab.setImageState(stateSet, true);
+
+        } else {
+            tabHolder.iv_tab.setSelected(isSelected);
+        }
     }
 
     public void setNewData(List<Integer> icons) {
