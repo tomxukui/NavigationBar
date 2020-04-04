@@ -21,15 +21,10 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
 
     private LayoutInflater mInflater;
 
-    private int mIconSize;
     private int mSelectedPosition;
 
     @Nullable
     private OnTabSelectedListener mOnTabSelectedListener;
-
-    public NavigationBarAdapter(int iconSize) {
-        mIconSize = iconSize;
-    }
 
     public NavigationBarAdapter() {
     }
@@ -85,8 +80,16 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
         });
 
         tabHolder.iv_tab.setImageResource(tabItem.getIcon());
-        ViewGroup.LayoutParams iconLayoutParams = tabHolder.iv_tab.getLayoutParams();
-        iconLayoutParams.width = mIconSize;
+
+        Integer iconSize = tabItem.getIconSize();
+        if (iconSize != null && iconSize > 0) {
+            FrameLayout.LayoutParams iconLayoutParams = (FrameLayout.LayoutParams) tabHolder.iv_tab.getLayoutParams();
+            iconLayoutParams.width = iconSize;
+
+        } else {
+            FrameLayout.LayoutParams iconLayoutParams = (FrameLayout.LayoutParams) tabHolder.iv_tab.getLayoutParams();
+            iconLayoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             int[] stateSet = {android.R.attr.state_checked * (isSelected ? 1 : -1)};
@@ -101,12 +104,6 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
         mTabItems = tabItems;
 
         notifyDataSetChanged();
-    }
-
-    public void setIconSize(int iconSize) {
-        mIconSize = iconSize;
-
-        notifyItemRangeChanged(0, getItemCount());
     }
 
     public static class TabHolder extends RecyclerView.ViewHolder {

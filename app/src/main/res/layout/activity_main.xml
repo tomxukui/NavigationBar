@@ -15,11 +15,11 @@
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_margin="20dp"
+            android:background="@color/colorAccent"
             android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:nb_icon_size="@dimen/main_nav_icon" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

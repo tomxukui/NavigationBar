@@ -8,6 +8,7 @@ import android.util.Log;
 import com.xukui.library.navigationbar.NavigationBar;
 import com.xukui.library.navigationbar.adapter.NavigationBarAdapter;
 import com.xukui.library.navigationbar.bean.TabItem;
+import com.xukui.library.navigationbar.util.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void initData() {
         mTabItems = new ArrayList<>();
-        mTabItems.add(new TabItem(R.drawable.btn_explore, true));
-        mTabItems.add(new TabItem(R.drawable.btn_explore, true));
-        mTabItems.add(new TabItem(R.drawable.btn_explore, false));
-        mTabItems.add(new TabItem(R.drawable.btn_explore, true));
-        mTabItems.add(new TabItem(R.drawable.btn_explore, true));
+        mTabItems.add(new TabItem(R.drawable.btn_explore, DensityUtil.dp2px(30), true));
+        mTabItems.add(new TabItem(R.drawable.btn_explore, DensityUtil.dp2px(30), true));
+        mTabItems.add(new TabItem(R.drawable.btn_explore, DensityUtil.dp2px(30), false));
+        mTabItems.add(new TabItem(R.drawable.btn_explore, DensityUtil.dp2px(30), true));
+        mTabItems.add(new TabItem(R.drawable.btn_explore, DensityUtil.dp2px(30), true));
     }
 
     private void initView() {

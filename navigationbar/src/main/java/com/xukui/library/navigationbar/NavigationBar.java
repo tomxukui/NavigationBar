@@ -9,7 +9,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.xukui.library.navigationbar.adapter.NavigationBarAdapter;
@@ -27,7 +26,6 @@ public class NavigationBar extends FrameLayout {
 
     private int mSpanCount;
     private int mElevation;
-    private int mIconSize;
 
     public NavigationBar(@NonNull Context context) {
         super(context);
@@ -53,19 +51,17 @@ public class NavigationBar extends FrameLayout {
     private void initData(Context context, AttributeSet attrs, int defStyleAttr) {
         mSpanCount = 4;
         mElevation = DensityUtil.dp2px(6);
-        mIconSize = DensityUtil.dp2px(30);
 
         if (attrs != null) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.NavigationBar, defStyleAttr, 0);
 
             mElevation = ta.getDimensionPixelSize(R.styleable.NavigationBar_android_elevation, mElevation);
-            mIconSize = ta.getDimensionPixelSize(R.styleable.NavigationBar_nb_icon_size, mIconSize);
 
             ta.recycle();
         }
 
         mLayoutManager = new GridLayoutManager(context, mSpanCount);
-        mNavigationBarAdapter = new NavigationBarAdapter(mIconSize);
+        mNavigationBarAdapter = new NavigationBarAdapter();
     }
 
     private void initView(Context context) {
