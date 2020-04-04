@@ -13,9 +13,8 @@
         <com.xukui.library.navigationbar.NavigationBar
             android:id="@+id/bar_tabs"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_margin="20dp"
-            android:background="@color/colorAccent"
             android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

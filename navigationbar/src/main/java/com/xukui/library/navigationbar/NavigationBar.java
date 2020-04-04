@@ -8,6 +8,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -69,8 +70,9 @@ public class NavigationBar extends FrameLayout {
 
     private void initView(Context context) {
         recycler_tabs = new RecyclerView(context);
-        recycler_tabs.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        recycler_tabs.setClipChildren(false);
+        LayoutParams recyclerLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        recyclerLayoutParams.gravity = Gravity.CENTER;
+        recycler_tabs.setLayoutParams(recyclerLayoutParams);
         recycler_tabs.setItemAnimator(null);
         addView(recycler_tabs);
     }
