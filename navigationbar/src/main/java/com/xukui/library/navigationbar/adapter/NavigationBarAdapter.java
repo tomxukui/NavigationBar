@@ -74,7 +74,7 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
         iconLayoutParams.width = mIconSize;
 
         int[] stateSet = {android.R.attr.state_checked * (mSelectedPosition == position ? 1 : -1)};
-        tabHolder.iv_tab.setImageState(stateSet, false);
+        tabHolder.iv_tab.setImageState(stateSet, true);
     }
 
     public void setNewData(List<Integer> icons) {

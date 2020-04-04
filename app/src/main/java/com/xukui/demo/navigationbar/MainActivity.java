@@ -29,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void initData() {
         mTabIcons = new ArrayList<>();
+        mTabIcons.add(R.drawable.btn_explore);
+        mTabIcons.add(R.drawable.test);
+        mTabIcons.add(R.drawable.btn_explore);
         mTabIcons.add(R.mipmap.ic_launcher_round);
         mTabIcons.add(R.mipmap.ic_launcher_round);
-        mTabIcons.add(R.mipmap.ic_launcher_round);
-        mTabIcons.add(R.mipmap.ic_launcher_round);
-        mTabIcons.add(R.mipmap.ic_launcher_round);
-        mTabIcons.add(R.mipmap.ic_launcher_round);
+        mTabIcons.add(R.drawable.btn_explore);
         mTabIcons.add(R.mipmap.ic_launcher_round);
     }
 

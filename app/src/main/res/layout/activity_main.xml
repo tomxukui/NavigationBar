@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:nb_icon_size="30dp" />
+            app:nb_icon_size="@dimen/main_nav_icon" />
 
     </android.support.constraint.ConstraintLayout>
 

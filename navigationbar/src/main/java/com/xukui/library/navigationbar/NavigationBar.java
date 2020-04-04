@@ -56,8 +56,8 @@ public class NavigationBar extends FrameLayout {
         if (attrs != null) {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.NavigationBar, defStyleAttr, 0);
 
-            mElevation = ta.getDimensionPixelOffset(R.styleable.NavigationBar_android_elevation, mElevation);
-            mIconSize = ta.getDimensionPixelOffset(R.styleable.NavigationBar_nb_icon_size, mIconSize);
+            mElevation = ta.getDimensionPixelSize(R.styleable.NavigationBar_android_elevation, mElevation);
+            mIconSize = ta.getDimensionPixelSize(R.styleable.NavigationBar_nb_icon_size, mIconSize);
 
             ta.recycle();
         }
@@ -69,6 +69,8 @@ public class NavigationBar extends FrameLayout {
     private void initView(Context context) {
         recycler_tabs = new RecyclerView(context);
         recycler_tabs.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        recycler_tabs.setClipChildren(false);
+        recycler_tabs.setItemAnimator(null);
         addView(recycler_tabs);
     }
 
