@@ -1,11 +1,13 @@
 package com.xukui.library.navigationbar.adapter;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.xukui.library.navigationbar.R;
 
@@ -18,6 +20,10 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
     private LayoutInflater mInflater;
 
     private int mIconSize;
+    private int mSelectedPosition;
+
+    @Nullable
+    private OnItemSelectListener mOnItemSelectListener;
 
     public NavigationBarAdapter(int iconSize) {
         mIconSize = iconSize;
@@ -43,12 +49,32 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TabHolder tabHolder, int position) {
+    public void onBindViewHolder(@NonNull final TabHolder tabHolder, final int position) {
         int tabIcon = mTabIcons.get(position);
+
+        tabHolder.frame_tab.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                int prePosition = mSelectedPosition;
+                mSelectedPosition = position;
+
+                notifyItemChanged(prePosition);
+                notifyItemChanged(position);
+
+                if (mOnItemSelectListener != null) {
+                    mOnItemSelectListener.onItemSelected(tabHolder, position, prePosition);
+                }
+            }
+
+        });
 
         tabHolder.iv_tab.setImageResource(tabIcon);
         ViewGroup.LayoutParams iconLayoutParams = tabHolder.iv_tab.getLayoutParams();
         iconLayoutParams.width = mIconSize;
+
+        int[] stateSet = {android.R.attr.state_checked * (mSelectedPosition == position ? 1 : -1)};
+        tabHolder.iv_tab.setImageState(stateSet, false);
     }
 
     public void setNewData(List<Integer> icons) {
@@ -63,14 +89,26 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
         notifyItemRangeChanged(0, getItemCount());
     }
 
-    static class TabHolder extends RecyclerView.ViewHolder {
+    public static class TabHolder extends RecyclerView.ViewHolder {
 
-        AppCompatImageView iv_tab;
+        public FrameLayout frame_tab;
+        public AppCompatImageView iv_tab;
 
         public TabHolder(View view) {
             super(view);
+            frame_tab = view.findViewById(R.id.frame_tab);
             iv_tab = view.findViewById(R.id.iv_tab);
         }
+
+    }
+
+    public void setOnItemSelectListener(@Nullable OnItemSelectListener listener) {
+        mOnItemSelectListener = listener;
+    }
+
+    public interface OnItemSelectListener {
+
+        void onItemSelected(TabHolder holder, int position, int prePosition);
 
     }
 

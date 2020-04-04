@@ -88,4 +88,8 @@ public class NavigationBar extends FrameLayout {
         mNavigationBarAdapter.setNewData(icons);
     }
 
+    public void setOnItemSelectListener(@Nullable NavigationBarAdapter.OnItemSelectListener listener) {
+        mNavigationBarAdapter.setOnItemSelectListener(listener);
+    }
+
 }

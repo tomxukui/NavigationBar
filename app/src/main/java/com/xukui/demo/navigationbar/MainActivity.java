@@ -3,13 +3,15 @@ package com.xukui.demo.navigationbar;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.xukui.library.navigationbar.NavigationBar;
+import com.xukui.library.navigationbar.adapter.NavigationBarAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity  extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private NavigationBar bar_tabs;
 
@@ -41,6 +43,14 @@ public class MainActivity  extends AppCompatActivity {
     }
 
     private void setView() {
+        bar_tabs.setOnItemSelectListener(new NavigationBarAdapter.OnItemSelectListener() {
+
+            @Override
+            public void onItemSelected(NavigationBarAdapter.TabHolder holder, int position, int prePosition) {
+                Log.e("ddd", position + ", " + prePosition);
+            }
+
+        });
         bar_tabs.setNewIcons(mTabIcons);
     }
 
