@@ -43,11 +43,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setView() {
-        bar_tabs.setOnItemSelectListener(new NavigationBarAdapter.OnItemSelectListener() {
+        bar_tabs.setOnTabSelectedListener(new NavigationBarAdapter.OnTabSelectedListener() {
 
             @Override
-            public void onItemSelected(NavigationBarAdapter.TabHolder holder, int position, int prePosition) {
-                Log.e("ddd", position + ", " + prePosition);
+            public void onTabSelected(NavigationBarAdapter.TabHolder holder, int position, int prePosition) {
+                Log.e("ddd", "onTabSelected: " + position + ", " + prePosition);
+            }
+
+            @Override
+            public void onTabReselected(NavigationBarAdapter.TabHolder holder, int position) {
+                Log.e("ddd", "onTabReselected:" + position);
             }
 
         });

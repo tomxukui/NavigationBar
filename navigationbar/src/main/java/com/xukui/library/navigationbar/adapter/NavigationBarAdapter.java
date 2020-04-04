@@ -23,7 +23,7 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
     private int mSelectedPosition;
 
     @Nullable
-    private OnItemSelectListener mOnItemSelectListener;
+    private OnTabSelectedListener mOnTabSelectedListener;
 
     public NavigationBarAdapter(int iconSize) {
         mIconSize = iconSize;
@@ -62,8 +62,13 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
                 notifyItemChanged(prePosition);
                 notifyItemChanged(position);
 
-                if (mOnItemSelectListener != null) {
-                    mOnItemSelectListener.onItemSelected(tabHolder, position, prePosition);
+                if (mOnTabSelectedListener != null) {
+                    if (prePosition == mSelectedPosition) {
+                        mOnTabSelectedListener.onTabReselected(tabHolder, position);
+
+                    } else {
+                        mOnTabSelectedListener.onTabSelected(tabHolder, position, prePosition);
+                    }
                 }
             }
 
@@ -102,13 +107,15 @@ public class NavigationBarAdapter extends RecyclerView.Adapter<NavigationBarAdap
 
     }
 
-    public void setOnItemSelectListener(@Nullable OnItemSelectListener listener) {
-        mOnItemSelectListener = listener;
+    public void setOnTabSelectedListener(@Nullable OnTabSelectedListener listener) {
+        mOnTabSelectedListener = listener;
     }
 
-    public interface OnItemSelectListener {
+    public interface OnTabSelectedListener {
 
-        void onItemSelected(TabHolder holder, int position, int prePosition);
+        void onTabSelected(TabHolder holder, int position, int prePosition);
+
+        void onTabReselected(TabHolder holder, int position);
 
     }
 
