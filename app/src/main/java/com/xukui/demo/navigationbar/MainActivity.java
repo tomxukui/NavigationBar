@@ -1,11 +1,9 @@
 package com.xukui.demo.navigationbar;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 
 import com.xukui.library.navigationbar.NavigationBar;
 import com.xukui.library.navigationbar.adapter.NavigationBarAdapter;
